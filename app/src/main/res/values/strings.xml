@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">gdscfinal</string>
+
+    <string name="pickdate">挑選開始日期</string>
+    <string name="newtask">新增任務</string>
 </resources>
