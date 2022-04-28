@@ -13,6 +13,7 @@ import java.nio.charset.Charset
 import java.util.logging.Level.INFO
 import com.example.gdscfinal.FileManipulate
 import com.example.gdscfinal.Task
+import com.example.gdscfinal.TaskOper
 
 class insertPage : AppCompatActivity() {
 
@@ -26,10 +27,8 @@ class insertPage : AppCompatActivity() {
         when(view?.id){
             R.id.button1->
                 {
-                    val fileStream = FileManipulate()
-                    val newTask = TaskOper()
-
-                    Toast.makeText(this,newTask.newTask("Task1","20220501"),Toast.LENGTH_LONG).show()
+                    val taskOper = TaskOper()
+                    Toast.makeText(this,"${taskOper.returnTaskList()}",Toast.LENGTH_LONG).show()
                 }
         }
         }
