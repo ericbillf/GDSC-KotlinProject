@@ -28,7 +28,8 @@ class insertPage : AppCompatActivity() {
             R.id.button1->
                 {
                     val taskOper = TaskOper()
-                    Toast.makeText(this,"${taskOper.returnTaskList()}",Toast.LENGTH_LONG).show()
+
+                    Toast.makeText(this,"taskList: ${taskOper.returnTaskList()}",Toast.LENGTH_LONG).show()
                 }
         }
         }
