@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gdscfinal">
         <activity
-            android:name=".insertPage"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".insertPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

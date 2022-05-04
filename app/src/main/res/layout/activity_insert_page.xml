@@ -7,9 +7,12 @@
     tools:context=".insertPage">
 
     <Button
-        android:id="@+id/button_date"
+        android:id="@+id/button_pick_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:text="@string/pickdate"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,14 +20,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_date_show"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="你選的日期是: xxxx年xx月xx日"
+        android:text=""
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_date" />
+        app:layout_constraintTop_toBottomOf="@+id/button_pick_date" />
 
     <Button
         android:id="@+id/button_task"
@@ -34,7 +37,7 @@
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_date_show" />
 
     <TextView
         android:id="@+id/textView3"
