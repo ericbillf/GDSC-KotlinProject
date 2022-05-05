@@ -21,8 +21,9 @@ class FileManipulate {
         return f.readText(Charset.forName("UTF-8"))
     }
 }
+data class Time(var year:Int,var month:Int, var day:Int)
+data class Task(var name:String, var startTime:Time, var endTime:Time)
 
-data class Task(var name:String, var dateTime:String)
 class TaskOper{
     private fun taskListToJson(taskList: ArrayList<Task>): String {
         return Gson().toJson(taskList)
