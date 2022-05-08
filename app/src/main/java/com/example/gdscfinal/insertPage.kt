@@ -23,16 +23,6 @@ class insertPage : AppCompatActivity() {
 
     }
 
-    fun onClick(view: android.view.View) {
-        when(view?.id){
-            R.id.button1->
-                {
-                    val taskOper = TaskOper()
-                    taskOper.newTask(Task("test1",Time(2020,5,20),Time(2020,5,30)))
-                    Toast.makeText(this,"taskList: ${taskOper.returnTaskList()}",Toast.LENGTH_LONG).show()
-                }
-        }
-        }
 
 
 }
