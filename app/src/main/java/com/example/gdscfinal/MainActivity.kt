@@ -116,8 +116,10 @@ class MainActivity : AppCompatActivity() {
         taskOper.clearJsonFile()
         val task1 = Task("test1",Time(2020,2,1),Time(2021,2,3),false)
         val task2 = Task("test2",Time(2021,2,2),Time(2022,3,2),true)
+        val task3 = Task("test3",Time(2022,2,2),Time(2022,3,2),true)
         taskOper.newTask(task1)
         taskOper.newTask(task2)
+        taskOper.newTask(task3)
         updateListView(taskOper.returnTaskList())
     }
 
@@ -129,15 +131,17 @@ class MainActivity : AppCompatActivity() {
 
     fun MarkBtn_click(view: android.view.View) {//Make change to taskList and finishList,
         val taskListCount = taskListViewGlob.count
-        val finishListCount = finishListViewGlob.count
         if(taskListCount>0) {
             val taskListArr = taskListViewGlob.checkedItemPositions
             var selectedName: String = ""
             var selectedID = arrayListOf<Task>()
             for (i in 0 until taskListCount) {
+                Log.d("Oper","for loop operated ${taskListArr.get(i)}")
                 if (taskListArr.get(i)) {
+
                     selectedName += taskListViewGlob.getItemAtPosition(i).toString() + "\n"
                     selectedID += idListViewGlob.getItemAtPosition(i) as Task
+                    Log.d("Selected: ","$selectedID")
                 }
             }
             for (x in selectedID) {
@@ -147,6 +151,11 @@ class MainActivity : AppCompatActivity() {
             Log.d("Marked finished", "${taskOper.returnTaskList()}")
             updateListView(taskOper.returnTaskList())
         }
+
+    }
+
+    fun unMarkBtn_click(view: android.view.View) {
+        val finishListCount = finishListViewGlob.count
         if(finishListCount>0){
             val finishListArr = finishListViewGlob.checkedItemPositions
             var unSelectedName: String = ""
@@ -165,6 +174,5 @@ class MainActivity : AppCompatActivity() {
             updateListView(taskOper.returnTaskList())
         }
     }
-
 
 }

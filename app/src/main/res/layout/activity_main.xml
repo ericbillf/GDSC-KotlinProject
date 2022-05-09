@@ -26,7 +26,7 @@
         android:onClick="NewTaskBtn_click"
         android:text="@string/newtask"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_finish"
+        app:layout_constraintEnd_toStartOf="@+id/btn_unmark"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -43,7 +43,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/btn_finish"
+        app:layout_constraintStart_toEndOf="@+id/btn_unmark"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.067"
         tools:text="show" />
@@ -72,11 +72,11 @@
         app:layout_constraintVertical_bias="0.623" />
 
     <Button
-        android:id="@+id/btn_finish"
+        android:id="@+id/btn_unmark"
         android:layout_width="163dp"
         android:layout_height="51dp"
-        android:onClick="MarkBtn_click"
-        android:text="@string/mark"
+        android:onClick="unMarkBtn_click"
+        android:text="@string/unmark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -105,5 +105,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/finishTaskListView" />
+
+    <Button
+        android:id="@+id/btn_mark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/mark"
+        android:onClick="MarkBtn_click"
+        app:layout_constraintBottom_toTopOf="@+id/taskListView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/finishTaskListView"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

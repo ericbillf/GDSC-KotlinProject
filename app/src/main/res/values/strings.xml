@@ -6,4 +6,5 @@
     <string name="markfinished">MarkFinished</string>
     <string name="mark">mark</string>
     <string name="newtask">newtask</string>
+    <string name="unmark">unmark</string>
 </resources>
