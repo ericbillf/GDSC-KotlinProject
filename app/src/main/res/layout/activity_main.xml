@@ -26,8 +26,6 @@
         android:onClick="NewTaskBtn_click"
         android:text="@string/newtask"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_unmark"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.066"
@@ -37,13 +35,10 @@
         android:id="@+id/btn_show_chose"
         android:layout_width="93dp"
         android:layout_height="49dp"
-        android:layout_marginStart="15dp"
         android:onClick="ShowBtn_click"
         android:text="@string/show"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/btn_unmark"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.067"
         tools:text="show" />
@@ -70,18 +65,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.623" />
-
-    <Button
-        android:id="@+id/btn_unmark"
-        android:layout_width="163dp"
-        android:layout_height="51dp"
-        android:onClick="unMarkBtn_click"
-        android:text="@string/unmark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.065" />
 
     <ListView
         android:id="@+id/finishIdListView"

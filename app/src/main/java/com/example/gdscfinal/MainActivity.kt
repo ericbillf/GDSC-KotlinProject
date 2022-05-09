@@ -131,7 +131,7 @@ class MainActivity : AppCompatActivity() {
 
     fun MarkBtn_click(view: android.view.View) {//Make change to taskList and finishList,
         val taskListCount = taskListViewGlob.count
-        if(taskListCount>0) {
+
             val taskListArr = taskListViewGlob.checkedItemPositions
             var selectedName: String = ""
             var selectedID = arrayListOf<Task>()
@@ -149,14 +149,10 @@ class MainActivity : AppCompatActivity() {
             }
             Toast.makeText(this, "Mark Finished: $selectedName", Toast.LENGTH_SHORT).show()
             Log.d("Marked finished", "${taskOper.returnTaskList()}")
-            updateListView(taskOper.returnTaskList())
-        }
 
-    }
 
-    fun unMarkBtn_click(view: android.view.View) {
         val finishListCount = finishListViewGlob.count
-        if(finishListCount>0){
+
             val finishListArr = finishListViewGlob.checkedItemPositions
             var unSelectedName: String = ""
             var unSelectedID = arrayListOf<Task>()
@@ -172,7 +168,10 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Mark Unfinished: $unSelectedName", Toast.LENGTH_SHORT).show()
             Log.d("Marked unfinished", "${taskOper.returnTaskList()}")
             updateListView(taskOper.returnTaskList())
-        }
+
+
     }
+
+
 
 }
