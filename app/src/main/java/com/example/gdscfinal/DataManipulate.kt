@@ -127,6 +127,26 @@ class TaskOper{
             true
         }
     }
-
+    fun markTaskUnFinished(task :Task): Boolean {
+        return if(!taskIsInJson(task)) false //Return false if the task is not in dataBase.json
+        else{
+            val file = FileManipulate()
+            var jsonStr = ""
+            jsonStr+=file.getFileContent(jsonFilePath)
+            val taskList = jsonToTaskList(jsonStr)
+            var newTaskList = arrayListOf<Task>()
+            for(x in taskList){
+                if(x != task){
+                    newTaskList+=x
+                }
+                else{
+                    x.isFinished=false
+                    newTaskList+=x
+                }
+            }
+            file.writeFile(taskListToJson(newTaskList), jsonFilePath)
+            true
+        }
+    }
 
 }

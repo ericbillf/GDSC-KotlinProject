@@ -4,4 +4,6 @@
     <string name="show">Show</string>
     <string name="delete">delete</string>
     <string name="markfinished">MarkFinished</string>
+    <string name="mark">mark</string>
+    <string name="newtask">newtask</string>
 </resources>
