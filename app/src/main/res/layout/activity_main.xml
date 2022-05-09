@@ -15,15 +15,17 @@
         app:layout_constraintHorizontal_bias="0.555"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.882" />
+        app:layout_constraintVertical_bias="0.882">
+
+    </ListView>
 
     <Button
         android:id="@+id/btn_new_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="381dp"
-        android:onClick="Btn1_click"
-        android:text="@string/button"
+        android:onClick="DeleteBtn_click"
+        android:text="@string/delete"
         app:layout_constraintBottom_toTopOf="@+id/taskListView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.173"
@@ -38,8 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="104dp"
         android:layout_marginBottom="379dp"
-        android:onClick="Btn2_click"
-        android:text="Button"
+        android:onClick="ShowBtn_click"
+        android:text="@string/show"
         app:layout_constraintBottom_toTopOf="@+id/taskListView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -47,4 +49,67 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:text="show" />
+
+    <ListView
+        android:id="@+id/IdListView"
+        android:layout_width="152dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/taskListView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.014" />
+
+    <ListView
+        android:id="@+id/finishTaskListView"
+        android:layout_width="367dp"
+        android:layout_height="258dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/taskListView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.623" />
+
+    <Button
+        android:id="@+id/btn_finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="58dp"
+        android:onClick="MarkBtn_click"
+        android:text="@string/markfinished"
+        app:layout_constraintBottom_toTopOf="@+id/finishTaskListView"
+        app:layout_constraintEnd_toStartOf="@+id/btn_show_chose"
+        app:layout_constraintHorizontal_bias="0.547"
+        app:layout_constraintStart_toStartOf="@+id/btn_new_task"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ListView
+        android:id="@+id/finishIdListView"
+        android:layout_width="61dp"
+        android:layout_height="17dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.007" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="66dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="------------------------------------"
+        app:layout_constraintBottom_toTopOf="@+id/taskListView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/finishTaskListView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

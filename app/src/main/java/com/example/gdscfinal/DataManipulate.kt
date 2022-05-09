@@ -21,8 +21,8 @@ class FileManipulate {
         return f.readText(Charset.forName("UTF-8"))
     }
 }
-data class Time(var year:Int,var month:Int, var day:Int)
-data class Task(var name:String, var startTime:Time, var endTime:Time)
+data class Time(var year:Int,var month:Int, var day:Int)//https://ithelp.ithome.com.tw/articles/10206960
+data class Task(var name:String, var startTime:Time, var endTime:Time, var isFinished: Boolean)
 
 class TaskOper{
     private fun taskListToJson(taskList: ArrayList<Task>): String {
@@ -106,5 +106,27 @@ class TaskOper{
         }
 
     }
+    fun markTaskFinished(task :Task): Boolean {
+        return if(!taskIsInJson(task)) false //Return false if the task is not in dataBase.json
+        else{
+            val file = FileManipulate()
+            var jsonStr = ""
+            jsonStr+=file.getFileContent(jsonFilePath)
+            val taskList = jsonToTaskList(jsonStr)
+            var newTaskList = arrayListOf<Task>()
+            for(x in taskList){
+                if(x != task){
+                    newTaskList+=x
+                }
+                else{
+                    x.isFinished=true
+                    newTaskList+=x
+                }
+            }
+            file.writeFile(taskListToJson(newTaskList), jsonFilePath)
+            true
+        }
+    }
+
 
 }
