@@ -223,7 +223,7 @@ class MainActivity : AppCompatActivity() {
         }
         if(unSelectedName!="")
             Toast.makeText(this, "Mark Unfinished: $unSelectedName", Toast.LENGTH_SHORT).show()
-        else
+        if(unSelectedName=="" && selectedName=="")
             Toast.makeText(this,"Nothing selected.",Toast.LENGTH_SHORT).show()
         updateListView()
     }
