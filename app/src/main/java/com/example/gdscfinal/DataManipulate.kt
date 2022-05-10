@@ -3,6 +3,8 @@ package com.example.gdscfinal
 import com.google.gson.Gson
 import java.io.File
 import java.nio.charset.Charset
+import java.text.SimpleDateFormat
+import java.util.*
 
 const val jsonFilePath:String = "data/data/com.example.gdscfinal/files/dataBase.json"
 class FileManipulate {
@@ -22,7 +24,7 @@ class FileManipulate {
     }
 }
 data class Time(var year:Int,var month:Int, var day:Int)//https://ithelp.ithome.com.tw/articles/10206960
-data class Task(var name:String, var startTime:Time, var endTime:Time, var isFinished: Boolean)
+data class Task(var name:String, var startTime:Time, var endTime:Time, var isFinished: Boolean, var isOverTime: Boolean)
 
 class TaskOper{
     private fun taskListToJson(taskList: ArrayList<Task>): String {
@@ -148,5 +150,47 @@ class TaskOper{
             true
         }
     }
+    fun markTaskOverTime(task: Task,today :ArrayList<Int>): Boolean {
+        if (!taskIsInJson(task)) return false
+        else {
+            val d1: String = task.endTime.year.toString() + "/" + task.endTime.month.toString() + "/" + task.endTime.day
+            val d2: String = today[0].toString() + "/" + today[1].toString() + "/" + today[2].toString()
 
+            val sdf = SimpleDateFormat("yyyy/MM/dd")
+
+            val firstDate: Date = sdf.parse(d1)
+            val secondDate: Date = sdf.parse(d2)
+            val cmp = firstDate.compareTo(secondDate)
+
+            val f = FileManipulate()
+            var jsonStr = ""
+            jsonStr+=f.getFileContent(jsonFilePath)
+            val taskList = jsonToTaskList(jsonStr)
+            var newTaskList = arrayListOf<Task>()
+            when {
+                cmp >= 0 -> {
+                    return false
+                }
+                cmp < 0 -> {
+                    for(x in taskList){
+                        if(x!=task){
+                            newTaskList+=x
+                        }
+                        else{
+                            x.isOverTime = true
+                            val overTime = "(Overtime!!)"
+                            if(overTime !in x.name)
+                                x.name = "${x.name}(Overtime!!)"
+                            newTaskList+=x
+                        }
+                    }
+                    f.writeFile(taskListToJson(newTaskList), jsonFilePath)
+                    return true
+                }
+                else -> {
+                    return false
+                }
+            }
+        }
+    }
 }
