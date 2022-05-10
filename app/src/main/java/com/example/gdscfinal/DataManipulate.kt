@@ -6,7 +6,7 @@ import java.nio.charset.Charset
 import java.text.SimpleDateFormat
 import java.util.*
 
-const val jsonFilePath:String = "data/data/com.example.gdscfinal/files/dataBase.json"
+
 class FileManipulate {
     fun writeFile(text: String, destFile: String) {
         val f = File(destFile)
@@ -27,6 +27,10 @@ data class Time(var year:Int,var month:Int, var day:Int)//https://ithelp.ithome.
 data class Task(var name:String, var startTime:Time, var endTime:Time, var isFinished: Boolean, var isOverTime: Boolean)
 
 class TaskOper{
+    lateinit var jsonFilePath:String
+    fun setFilePath(filePath :String){
+        jsonFilePath = filePath
+    }
     private fun taskListToJson(taskList: ArrayList<Task>): String {
         return Gson().toJson(taskList)
     }

@@ -23,11 +23,13 @@ class MainActivity : AppCompatActivity() {
     lateinit var idListViewGlob: ListView
     lateinit var finishListViewGlob: ListView
     lateinit var finishIdListViewGlob: ListView
-    private val taskOper = TaskOper()
+    val taskOper =TaskOper()
     lateinit var nameAdapterGlobe: ArrayAdapter<String>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var filePath:String = filesDir.absolutePath
+        taskOper.setFilePath("$filePath/dataBase.json")
         fun initializeTaskListView(taskList: ArrayList<Task>){
             val myNameAdapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice)//For storing names(visible)
             val myObjectAdapter = ArrayAdapter<Task>(this,android.R.layout.simple_list_item_1)//For storing ids(gone)
