@@ -1,19 +1,15 @@
 package com.example.gdscfinal
 
-import android.os.Build
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.MenuItem
+
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import org.jetbrains.anko.toast
-import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -90,6 +86,11 @@ class MainActivity : AppCompatActivity() {
         }
         initializeFinishListView(getTodayTaskList())
     }
+    fun getTime():String{//For debugging
+        val sdf = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+        val time = sdf.format(Date())
+        return time.toString()
+    }
     fun getDate(): ArrayList<Int> {
         val yearDf = SimpleDateFormat("yyyy")
         val monthDf = SimpleDateFormat("MM")
@@ -152,12 +153,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
         for(x in taskList){
-            if(!x.isFinished)
+            if(!x.isFinished){
                 myNameAdapter.add(x.name)
-        }
-        for(x in taskList){
-            if(!x.isFinished)
                 myObjectAdapter.add(x)
+            }
+
         }
 
         taskListViewGlob.adapter = myNameAdapter
@@ -165,12 +165,10 @@ class MainActivity : AppCompatActivity() {
         myNameAdapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice)
         myObjectAdapter = ArrayAdapter<Task>(this,android.R.layout.simple_list_item_1)
         for(x in taskList){
-            if(x.isFinished)
+            if(x.isFinished){
                 myNameAdapter.add(x.name)
-        }
-        for(x in taskList){
-            if(x.isFinished)
                 myObjectAdapter.add(x)
+            }
         }
         finishListViewGlob.adapter = myNameAdapter
         finishIdListViewGlob.adapter = myObjectAdapter
