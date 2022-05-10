@@ -225,6 +225,8 @@ class MainActivity : AppCompatActivity() {
         }
         if(unSelectedName!="")
             Toast.makeText(this, "Mark Unfinished: $unSelectedName", Toast.LENGTH_SHORT).show()
+        else
+            Toast.makeText(this,"Nothing selected.",Toast.LENGTH_SHORT).show()
         updateListView()
     }
 
@@ -243,7 +245,7 @@ class MainActivity : AppCompatActivity() {
             taskOper.removeTask(x)
         }
         if(selectedName=="")
-            Toast.makeText(this,"Nothing selected",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Nothing selected.",Toast.LENGTH_SHORT).show()
         else
             Toast.makeText(this,"Deleted: $selectedName",Toast.LENGTH_SHORT).show()
         updateListView()
