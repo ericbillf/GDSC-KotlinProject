@@ -182,21 +182,14 @@ class MainActivity : AppCompatActivity() {
     fun NewTaskBtn_click(view: android.view.View) {
         //**new task**
         taskOper.clearJsonFile()
-        val task1 = Task("test1",Time(2022,5,9),Time(2022,5,11),
-            isFinished = false,
-            isOverTime = false
-        )
-        val task2 = Task("test2",Time(2022,5,10),Time(2022,5,10),
-            isFinished = true,
-            isOverTime = false
-        )
-        val task3 = Task("test3",Time(2022,4,2),Time(2022,5,9),
-            isFinished = true,
-            isOverTime = false
-        )
-        taskOper.newTask(task1)
-        taskOper.newTask(task2)
-        taskOper.newTask(task3)
+        for(x in 1 until 20){
+            var task = Task("task$x",Time(2022,5,10),Time(2022,5,10),
+                isFinished = false,
+                isOverTime = false
+            )
+            taskOper.newTask(task)
+        }
+        Log.d("List","${taskOper.returnTaskList()}")
         updateListView()
     }
 
