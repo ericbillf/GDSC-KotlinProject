@@ -6,59 +6,84 @@
     android:layout_height="match_parent"
     tools:context=".insertPage">
 
+    <!-- 挑選開始日期的按鈕 -->
     <Button
-        android:id="@+id/button_pick_date"
+        android:id="@+id/button_pick_date_go"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:text="@string/pickdate"
+        android:text="@string/pickdatego"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- 顯示開始日期的文字 -->
     <TextView
-        android:id="@+id/textView_date_show"
+        android:id="@+id/textView_date_show_go"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text=""
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_pick_date" />
+        app:layout_constraintTop_toBottomOf="@+id/button_pick_date_go" />
+
+
+
+    <!-- 挑選結束日期 -->
 
     <Button
-        android:id="@+id/button_task"
+        android:id="@+id/button_date_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="@string/newtask"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_date_show" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_date_show_end" />
 
+    <!-- 確認日期挑選是否ok -->
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView_date_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="99dp"
-        android:text="任務名稱: 睡覺"
+        android:layout_marginTop="20dp"
+        android:text=""
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_task" />
+        app:layout_constraintTop_toBottomOf="@+id/button_date_check" />
 
-    <TextView
-        android:id="@+id/textView4"
+    <Button
+        android:id="@+id/button_pick_date_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
-        android:text="結束日期:xxxx年xx月xx日"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/pickdateend"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_date_show_go" />
+
+    <!-- 顯示結束日期 -->
+    <TextView
+        android:id="@+id/textView_date_show_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text=""
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/button_pick_date_end" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
