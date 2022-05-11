@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">gdscfinal</string>
     <string name="hello">Hello!</string>
-    <string name="text">Textsdfgh</string>
+    <string name="text">天氣</string>
 </resources>
