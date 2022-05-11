@@ -30,10 +30,9 @@ class MainActivity : AppCompatActivity() {
             val myNameAdapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice)//For storing names(visible)
             val myObjectAdapter = ArrayAdapter<Task>(this,android.R.layout.simple_list_item_1)//For storing ids(gone)
 
-
             for(x in taskList){
                 if(!x.isFinished)
-                    myNameAdapter.add(x.name)
+                    myNameAdapter.add(x.name+" EndTime: ${x.endTime.year}/${x.endTime.month}/${x.endTime.day}")
             }
             for(x in taskList){
                 if(!x.isFinished)
@@ -61,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
             for(x in taskList){
                 if(x.isFinished)
-                    myNameAdapter.add(x.name)
+                    myNameAdapter.add(x.name+" EndTime: ${x.endTime.year}/${x.endTime.month}/${x.endTime.day}")
             }
             for(x in taskList){
                 if(x.isFinished)
@@ -133,12 +132,13 @@ class MainActivity : AppCompatActivity() {
                 todayTaskList+=task
             }
         }
+        todayTaskList = taskOper.sortTaskList(todayTaskList)
         return todayTaskList
     }
     fun updateListView(){
         var myNameAdapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice)//For storing names(visible)
         var myObjectAdapter = ArrayAdapter<Task>(this,android.R.layout.simple_list_item_1)//For storing ids(gone)
-        val taskList = getTodayTaskList()
+        var taskList = getTodayTaskList()
         val finishTaskList = arrayListOf<Task>()
         var finishTaskCount :Int=0
         for(x in taskList){
@@ -154,7 +154,7 @@ class MainActivity : AppCompatActivity() {
         }
         for(x in taskList){
             if(!x.isFinished){
-                myNameAdapter.add(x.name)
+                myNameAdapter.add(x.name+" EndTime: ${x.endTime.year}/${x.endTime.month}/${x.endTime.day}")
                 myObjectAdapter.add(x)
             }
 
@@ -166,7 +166,7 @@ class MainActivity : AppCompatActivity() {
         myObjectAdapter = ArrayAdapter<Task>(this,android.R.layout.simple_list_item_1)
         for(x in taskList){
             if(x.isFinished){
-                myNameAdapter.add(x.name)
+                myNameAdapter.add(x.name+" EndTime: ${x.endTime.year}/${x.endTime.month}/${x.endTime.day}")
                 myObjectAdapter.add(x)
             }
         }
@@ -180,8 +180,8 @@ class MainActivity : AppCompatActivity() {
     fun NewTaskBtn_click(view: android.view.View) {
         //**new task**
         taskOper.clearJsonFile()
-        for(x in 1 until 20){
-            var task = Task("task$x",Time(2022,5,10),Time(2022,5,10),
+        for(x in 20 downTo  1){
+            var task = Task("task$x",Time(2022,5,x),Time(2022,5,x),
                 isFinished = false,
                 isOverTime = false
             )

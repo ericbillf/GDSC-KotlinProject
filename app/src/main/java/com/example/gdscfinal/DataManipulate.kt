@@ -5,6 +5,7 @@ import java.io.File
 import java.nio.charset.Charset
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class FileManipulate {
@@ -112,6 +113,12 @@ class TaskOper{
         }
 
     }
+    fun editTaskList(newTaskList:ArrayList<Task>){
+        val file = FileManipulate()
+        var jsonStr = ""
+        file.writeFile(taskListToJson(newTaskList), jsonFilePath)
+
+    }
     fun markTaskFinished(task :Task): Boolean {
         return if(!taskIsInJson(task)) false //Return false if the task is not in dataBase.json
         else{
@@ -196,5 +203,52 @@ class TaskOper{
                 }
             }
         }
+    }
+    fun taskCpy(task1:Task): Task {
+        var newTask:Task =Task("",Time(0,0,0),Time(0,0,0),false,false)
+        newTask.name = task1.name
+        newTask.startTime=task1.startTime
+        newTask.endTime=task1.endTime
+        newTask.isFinished=task1.isFinished
+        newTask.isOverTime=task1.isOverTime
+        return newTask
+    }
+    fun isAfter(task1:Task,task2:Task): Boolean {
+        if(!taskIsInJson(task1) || !taskIsInJson(task2))return false
+        else{
+            val d1: String = task1.endTime.year.toString() + "/" + task1.endTime.month.toString() + "/" + task1.endTime.day
+            val d2: String = task2.endTime.year.toString() + "/" + task2.endTime.month.toString() + "/" + task2.endTime.day
+            val sdf = SimpleDateFormat("yyyy/MM/dd")
+            val firstDate: Date = sdf.parse(d1)
+            val secondDate: Date = sdf.parse(d2)
+            val cmp = firstDate.compareTo(secondDate)
+            return when{
+                cmp>0->{
+                    true
+                }
+                cmp==0->{
+                    false
+                }
+                else->{
+                    false
+                }
+            }
+
+        }
+
+    }
+    fun sortTaskList(taskList:ArrayList<Task>): ArrayList<Task> {
+        val size = taskList.size
+
+        for(i in 0 until size-1){
+            for(j in 0 until size-1){
+                if(isAfter(taskList[j],taskList[j+1])){
+                    var tmp: Task = taskCpy(taskList[j])
+                    taskList[j] = taskCpy(taskList[j+1])
+                    taskList[j+1] = taskCpy(tmp)
+                }
+            }
+        }
+        return taskList
     }
 }
