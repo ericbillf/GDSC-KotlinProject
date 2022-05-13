@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/background.png">
+    android:background="@drawable/background">
 
 
     <TextView
@@ -22,8 +22,8 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="148dp"
-        android:layout_height="119dp"
+        android:layout_width="229dp"
+        android:layout_height="171dp"
         android:text="@string/text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,16 +31,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.333" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="119dp"
-        android:layout_height="96dp"
-        app:srcCompat="@drawable/sun"
-        tools:layout_editor_absoluteX="132dp"
-        tools:layout_editor_absoluteY="444dp" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
