@@ -1,6 +1,8 @@
 package com.example.gdscfinal
 
 
+
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +17,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
+
 class MainActivity : AppCompatActivity() {
     lateinit var taskListViewGlob: ListView
     lateinit var idListViewGlob: ListView
@@ -26,11 +29,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         var filePath:String = filesDir.absolutePath
         taskOper.setFilePath("$filePath/dataBase.json")
         checkBoxGlob = findViewById<CheckBox>(R.id.checkBox)
         checkBoxGlob.setOnCheckedChangeListener(){buttonView, isChecked ->
             updateListView()
+            if(isChecked)Toast.makeText(this,"顯示全部任務",Toast.LENGTH_SHORT).show()
+            else Toast.makeText(this,"隱藏未開始任務",Toast.LENGTH_SHORT).show()
         }
         fun initializeTaskListView(taskList: ArrayList<Task>){
             val myNameAdapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice)//For storing names(visible)
@@ -38,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
             for(x in taskList){
                 if(!x.isFinished)
-                    myNameAdapter.add(x.name+" EndTime: ${x.endTime.year}/${x.endTime.month}/${x.endTime.day}")
+                    myNameAdapter.add(x.name+" 到期日: ${x.endTime.year}/${x.endTime.month}/${x.endTime.day}")
             }
             for(x in taskList){
                 if(!x.isFinished)
@@ -56,7 +62,6 @@ class MainActivity : AppCompatActivity() {
 
             taskListView.adapter = myNameAdapter
             idListView.adapter = myObjectAdapter
-
         }
         initializeTaskListView(getTodayTaskList())
         fun initializeFinishListView(taskList :ArrayList<Task>){
@@ -66,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
             for(x in taskList){
                 if(x.isFinished)
-                    myNameAdapter.add(x.name+" EndTime: ${x.endTime.year}/${x.endTime.month}/${x.endTime.day}")
+                    myNameAdapter.add(x.name+" 到期日: ${x.endTime.year}/${x.endTime.month}/${x.endTime.day}")
             }
             for(x in taskList){
                 if(x.isFinished)
@@ -174,7 +179,7 @@ class MainActivity : AppCompatActivity() {
         var finishTaskCount :Int=0
         for(x in taskList){
             if(!x.isFinished){
-                myNameAdapter.add(x.name+" EndTime: ${x.endTime.year}/${x.endTime.month}/${x.endTime.day}")
+                myNameAdapter.add(x.name+" 到期日: ${x.endTime.year}/${x.endTime.month}/${x.endTime.day}")
                 myObjectAdapter.add(x)
             }
 
@@ -188,7 +193,7 @@ class MainActivity : AppCompatActivity() {
             if(x.isFinished){
                 finishTaskCount+=1
                 finishTaskList+=x
-                myNameAdapter.add(x.name+" EndTime: ${x.endTime.year}/${x.endTime.month}/${x.endTime.day}")
+                myNameAdapter.add(x.name+" 到期日: ${x.endTime.year}/${x.endTime.month}/${x.endTime.day}")
                 myObjectAdapter.add(x)
             }
         }
@@ -209,15 +214,8 @@ class MainActivity : AppCompatActivity() {
     }
     fun NewTaskBtn_click(view: android.view.View) {
         //**new task**
-        taskOper.clearJsonFile()
-        for(x in 20 downTo  1){
-            var task = Task("task$x",Time(2022,5,x),Time(2022,5,x),
-                isFinished = false,
-                isOverTime = false
-            )
-            taskOper.newTask(task)
-        }
-        Log.d("List","${taskOper.returnTaskList()}")
+        val intent = Intent(this@MainActivity, insertPage::class.java)
+        startActivity(intent)
         updateListView()
     }
 
@@ -237,7 +235,7 @@ class MainActivity : AppCompatActivity() {
             taskOper.markTaskFinished(x)
         }
         if(selectedName!="")
-            Toast.makeText(this, "Mark Finished:\n$selectedName", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "標記為已完成:\n$selectedName", Toast.LENGTH_SHORT).show()
         val finishListCount = finishListViewGlob.count
         val finishListArr = finishListViewGlob.checkedItemPositions
         var unSelectedName: String = ""
@@ -252,9 +250,9 @@ class MainActivity : AppCompatActivity() {
             taskOper.markTaskUnFinished(x)
         }
         if(unSelectedName!="")
-            Toast.makeText(this, "Mark Unfinished:\n$unSelectedName", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "標記為未完成:\n$unSelectedName", Toast.LENGTH_SHORT).show()
         if(unSelectedName=="" && selectedName=="")
-            Toast.makeText(this,"Nothing selected.",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"未選擇",Toast.LENGTH_SHORT).show()
         updateListView()
     }
 
@@ -273,9 +271,9 @@ class MainActivity : AppCompatActivity() {
             taskOper.removeTask(x)
         }
         if(selectedName=="")
-            Toast.makeText(this,"Nothing selected.",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"未選擇",Toast.LENGTH_SHORT).show()
         else
-            Toast.makeText(this,"Deleted:\n$selectedName",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"已刪除:\n$selectedName",Toast.LENGTH_SHORT).show()
         updateListView()
     }
 

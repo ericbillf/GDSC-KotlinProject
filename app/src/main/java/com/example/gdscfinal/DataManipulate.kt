@@ -64,7 +64,7 @@ class TaskOper{
         }
     }
     fun newTask(task: Task): Boolean {//Input a Task object and add it to dataBase.json
-        return if(taskIsInJson(task)) false
+        return if(taskIsInJson(task) || task.name.isEmpty()) false
         else{
             val file = FileManipulate()
             var jsonStr = ""
@@ -189,9 +189,9 @@ class TaskOper{
                         }
                         else{
                             x.isOverTime = true
-                            val overTime = "(Overtime!!)"
+                            val overTime = "(超時!!)"
                             if(overTime !in x.name)
-                                x.name = "${x.name}(Overtime!!)"
+                                x.name = "${x.name}(超時!!)"
                             newTaskList+=x
                         }
                     }
