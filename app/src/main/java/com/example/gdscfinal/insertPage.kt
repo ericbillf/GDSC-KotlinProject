@@ -16,6 +16,7 @@ class insertPage : AppCompatActivity() {
     private lateinit var buttonpickgo: Button
     private lateinit var buttonpickend: Button
     private lateinit var datecheck: Button
+    private lateinit var missubmit: Button
 
 
     // TextView
@@ -44,6 +45,7 @@ class insertPage : AppCompatActivity() {
         textdateviewend = findViewById(R.id.textView_date_show_end)
         datecheck = findViewById(R.id.button_date_check)
         datecheckshow = findViewById(R.id.textView_date_check)
+        missubmit = findViewById(R.id.button_submit)
 
 
         val myCalendargo = Calendar.getInstance()
@@ -116,6 +118,7 @@ class insertPage : AppCompatActivity() {
             ).show()
         }
 
+        // 比較日期
         datecheck.setOnClickListener {
             val sdf = SimpleDateFormat("yyyy/MM/dd")
             val startday: String = textdateviewgo.text.toString()
@@ -139,6 +142,31 @@ class insertPage : AppCompatActivity() {
         }
 
     }
+        // 新增任務
+        missubmit.setOnClickListener {
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
         }
 
