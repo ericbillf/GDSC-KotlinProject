@@ -89,10 +89,7 @@ class MainActivity : AppCompatActivity() {
 
             finishTaskListView.adapter = myNameAdapter
             finishIdListView.adapter = myObjectAdapter
-            val count = finishListViewGlob.count
-            for(i in 0 until count){
-                finishListViewGlob.setItemChecked(i,true)
-            }
+
         }
         initializeFinishListView(getTodayTaskList())
     }
@@ -208,9 +205,7 @@ class MainActivity : AppCompatActivity() {
         finishListViewGlob.adapter = myNameAdapter
         finishIdListViewGlob.adapter = myObjectAdapter
         val count = finishListViewGlob.count
-        for(i in 0 until count){
-            finishListViewGlob.setItemChecked(i,true)
-        }
+
     }
     fun NewTaskBtn_click(view: android.view.View) {
         //**new task**
@@ -241,7 +236,7 @@ class MainActivity : AppCompatActivity() {
         var unSelectedName: String = ""
         var unSelectedID = arrayListOf<Task>()
         for (i in 0 until finishListCount) {
-            if (!finishListArr.get(i)) {
+            if (finishListArr.get(i)) {
                 unSelectedName += finishListViewGlob.getItemAtPosition(i).toString() + " "
                 unSelectedID += finishIdListViewGlob.getItemAtPosition(i) as Task
             }
@@ -270,10 +265,26 @@ class MainActivity : AppCompatActivity() {
         for (x in selectedID) {
             taskOper.removeTask(x)
         }
-        if(selectedName=="")
-            Toast.makeText(this,"未選擇",Toast.LENGTH_SHORT).show()
-        else
+        if(selectedName!="")
             Toast.makeText(this,"已刪除:\n$selectedName",Toast.LENGTH_SHORT).show()
+
+        val finishListCount = finishListViewGlob.count
+        val finishListArr = finishListViewGlob.checkedItemPositions
+        var unSelectedName: String = ""
+        var unSelectedID = arrayListOf<Task>()
+        for (i in 0 until finishListCount) {
+            if (finishListArr.get(i)) {
+                unSelectedName += finishListViewGlob.getItemAtPosition(i).toString() + " "
+                unSelectedID += finishIdListViewGlob.getItemAtPosition(i) as Task
+            }
+        }
+        for (x in unSelectedID) {
+            taskOper.removeTask(x)
+        }
+        if(unSelectedName!="")
+            Toast.makeText(this, "已刪除:\n$unSelectedName", Toast.LENGTH_SHORT).show()
+        if(unSelectedName=="" && selectedName=="")
+            Toast.makeText(this,"未選擇",Toast.LENGTH_SHORT).show()
         updateListView()
     }
 
