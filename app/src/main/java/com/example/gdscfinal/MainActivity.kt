@@ -96,11 +96,13 @@ class MainActivity : AppCompatActivity() {
     fun showAll(): Boolean{
         return checkBoxGlob.isChecked
     }
+
     fun getTime():String{//For debugging
         val sdf = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
         val time = sdf.format(Date())
         return time.toString()
     }
+
     fun getDate(): ArrayList<Int> {
         val yearDf = SimpleDateFormat("yyyy")
         val monthDf = SimpleDateFormat("MM")
@@ -111,6 +113,7 @@ class MainActivity : AppCompatActivity() {
         val day = dayDf.format(Date())
         return arrayListOf<Int>(year.toInt(),month.toInt(),day.toInt())
     }
+
     fun getTaskList(): ArrayList<Task>{
         var taskList = taskOper.returnTaskList()
         for(x in taskList){
@@ -118,7 +121,7 @@ class MainActivity : AppCompatActivity() {
         }
         taskList = taskOper.returnTaskList()
         var todayTaskList = arrayListOf<Task>()
-        var today = getDate()
+//        var today = getDate() 多餘的
         for(task in taskList){
             if(!task.isOverTime){
                 todayTaskList+=task
@@ -132,8 +135,20 @@ class MainActivity : AppCompatActivity() {
         todayTaskList = taskOper.sortTaskList(todayTaskList)
         return todayTaskList
     }
+
+    fun markTaskOverTime(x: ArrayList<Task>): ArrayList<Task>{
+        for(i in 0 until x.size){
+//            判斷是否有問題，有的話更新x
+//            全部做完再呼叫寫入檔案，檔案開啟跟關閉都需要大量的時間
+//            或者統一更新等所有事情都做完之後一次更新
+        }
+        return x
+    }
+
     fun getTodayTaskList(): ArrayList<Task> {
-        var taskList = taskOper.returnTaskList()
+        var taskList = markTaskOverTime(taskOper.returnTaskList())
+//        改成上面這樣
+//        應該把寫入專門寫一個function，不要把寫入跟判斷寫在一起
         for(x in taskList){
             taskOper.markTaskOverTime(x,getDate())
         }
@@ -147,6 +162,8 @@ class MainActivity : AppCompatActivity() {
             val firstDate: Date = sdf.parse(d1)
             val secondDate: Date = sdf.parse(d2)
             val cmp = firstDate.compareTo(secondDate)
+//            這邊感覺用 if 就好了 if(cmp >= 0 && !task.isOverTime) todayTaskList+=task
+//          VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
             when{
                 cmp>=0->{
                     if(!task.isOverTime)
@@ -159,6 +176,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+//       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
         for(task in taskList){
             if(task.isOverTime){
                 todayTaskList+=task
@@ -167,10 +185,11 @@ class MainActivity : AppCompatActivity() {
         todayTaskList = taskOper.sortTaskList(todayTaskList)
         return todayTaskList
     }
+
     fun updateListView(){
         var myNameAdapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice)//For storing names(visible)
         var myObjectAdapter = ArrayAdapter<Task>(this,android.R.layout.simple_list_item_1)//For storing ids(gone)
-        var taskList = if(showAll())getTaskList()else getTodayTaskList()
+        var taskList = if(showAll())    getTaskList()   else    getTodayTaskList()
         var taskList2 = getTaskList()
         val finishTaskList = arrayListOf<Task>()
         var finishTaskCount :Int=0
@@ -207,6 +226,7 @@ class MainActivity : AppCompatActivity() {
         val count = finishListViewGlob.count
 
     }
+
     fun NewTaskBtn_click(view: android.view.View) {
         //**new task**
         val intent = Intent(this@MainActivity, insertPage::class.java)
@@ -214,32 +234,29 @@ class MainActivity : AppCompatActivity() {
         updateListView()
     }
 
-
     fun MarkBtn_click(view: android.view.View) {//Make change to taskList and finishList,
-        val taskListCount = taskListViewGlob.count
+        // 因為直接從 checkedItemPosition 裡面找所以就不用 Count 了
         val taskListArr = taskListViewGlob.checkedItemPositions
         var selectedName: String = ""
         var selectedID = arrayListOf<Task>()
-        for (i in 0 until taskListCount) {
-            if (taskListArr.get(i)) {
-                selectedName += taskListViewGlob.getItemAtPosition(i).toString() + " "
-                selectedID += idListViewGlob.getItemAtPosition(i) as Task
-            }
+        // taskListArr 只會存有的位置，所以不續要從頭找，直接讀就好
+        //keyAt 因為是 key O(1)
+        for(i in 0 until taskListArr.size()){
+            selectedName += taskListViewGlob.getItemAtPosition(taskListArr.keyAt(i)).toString() + " "
+            selectedID += idListViewGlob.getItemAtPosition(taskListArr.keyAt(i)) as Task
         }
-        for (x in selectedID) {
+        for (x in selectedID)
             taskOper.markTaskFinished(x)
-        }
+
         if(selectedName!="")
             Toast.makeText(this, "標記為已完成:\n$selectedName", Toast.LENGTH_SHORT).show()
-        val finishListCount = finishListViewGlob.count
+//        val finishListCount = finishListViewGlob.count 同理
         val finishListArr = finishListViewGlob.checkedItemPositions
         var unSelectedName: String = ""
         var unSelectedID = arrayListOf<Task>()
-        for (i in 0 until finishListCount) {
-            if (finishListArr.get(i)) {
-                unSelectedName += finishListViewGlob.getItemAtPosition(i).toString() + " "
-                unSelectedID += finishIdListViewGlob.getItemAtPosition(i) as Task
-            }
+        for (i in 0 until finishListArr.size()) {
+            unSelectedName += finishListViewGlob.getItemAtPosition(finishListArr.keyAt(i)).toString() + " "
+            unSelectedID += finishIdListViewGlob.getItemAtPosition(finishListArr.keyAt(i)) as Task
         }
         for (x in unSelectedID) {
             taskOper.markTaskUnFinished(x)
