@@ -25,7 +25,10 @@ class FileManipulate {
     }
 }
 data class Time(var year:Int,var month:Int, var day:Int)//https://ithelp.ithome.com.tw/articles/10206960
-data class Task(var name:String, var startTime:Time, var endTime:Time, var isFinished: Boolean, var isOverTime: Boolean)
+data class Task(
+    var name:String,
+    var startTime:Time,
+    var endTime:Time, var isFinished: Boolean, var isOverTime: Boolean)
 
 class TaskOper{
     lateinit var jsonFilePath:String
@@ -39,11 +42,8 @@ class TaskOper{
         return Gson().fromJson(jsonStr, Array<Task>::class.java).asList()
     }
     fun returnTaskList(): ArrayList<Task> { // Return the task list in dataBase.json as an ArrayList<Task>
-        val f = FileManipulate()
-        var jsonStr = ""
-        jsonStr+=f.getFileContent(jsonFilePath)
-        return if(jsonStr == "") ArrayList<Task>()
-        else ArrayList(jsonToTaskList(jsonStr))
+//        好像沒必要寫那麼複雜
+        return ArrayList(jsonToTaskList(FileManipulate().getFileContent(jsonFilePath)))
     }
     fun clearJsonFile(){//Clear dataBase.json
         val f = FileManipulate()
@@ -235,20 +235,22 @@ class TaskOper{
             }
 
         }
-
     }
+//    可以去掉 isAfter 了
     fun sortTaskList(taskList:ArrayList<Task>): ArrayList<Task> {
-        val size = taskList.size
-
-        for(i in 0 until size-1){
-            for(j in 0 until size-1){
-                if(isAfter(taskList[j],taskList[j+1])){
-                    var tmp: Task = taskCpy(taskList[j])
-                    taskList[j] = taskCpy(taskList[j+1])
-                    taskList[j+1] = taskCpy(tmp)
-                }
-            }
-        }
+        taskList.sortWith(compareBy({it.endTime.year}, {it.endTime.month}, {it.endTime.day}, {it.startTime.year}, {it.startTime.month}, {it.startTime.day}))
+//      kotlin 有提供 List sort 的方法 sortWith 代表要比很多個值，後面用 compareBy 合併
+//      只有要比一個就 sortby({it.xxx}就好
+//      你的sort 是 bubble sort O(n^2) 系統排的話通常是O(nlogn)
+//        for(i in 0 until size-1){
+//            for(j in 0 until size-1){
+//                if(isAfter(taskList[j],taskList[j+1])){
+//                    var tmp: Task = taskCpy(taskList[j])
+//                    taskList[j] = taskCpy(taskList[j+1])
+//                    taskList[j+1] = taskCpy(tmp)
+//                }
+//            }
+//        }
         return taskList
     }
 }
