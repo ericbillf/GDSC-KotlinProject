@@ -170,8 +170,8 @@ class MainActivity : AppCompatActivity() {
     fun updateListView(){
         var myNameAdapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice)//For storing names(visible)
         var myObjectAdapter = ArrayAdapter<Task>(this,android.R.layout.simple_list_item_1)//For storing ids(gone)
-        var taskList = if(showAll())getTaskList()else getTodayTaskList()
-        var taskList2 = getTaskList()
+        var taskList = if(showAll())getTaskList()else getTodayTaskList()//to-do list taskList
+        var taskList2 = getTaskList() //Finish zone taskList
         val finishTaskList = arrayListOf<Task>()
         var finishTaskCount :Int=0
         for(x in taskList){
