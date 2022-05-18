@@ -5,7 +5,6 @@ package com.example.gdscfinal
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 
 import android.view.View
 import android.widget.ArrayAdapter
@@ -29,7 +28,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var filePath:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_showtask)
 
         filePath= filesDir.absolutePath
         taskOper.setFilePath("$filePath/dataBase.json")
