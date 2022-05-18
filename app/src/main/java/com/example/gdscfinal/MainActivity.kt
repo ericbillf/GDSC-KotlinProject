@@ -26,11 +26,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var checkBoxGlob: CheckBox
     val taskOper =TaskOper()
     lateinit var nameAdapterGlobe: ArrayAdapter<String>
+    lateinit var filePath:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var filePath:String = filesDir.absolutePath
+        filePath= filesDir.absolutePath
         taskOper.setFilePath("$filePath/dataBase.json")
         checkBoxGlob = findViewById<CheckBox>(R.id.checkBox)
         checkBoxGlob.setOnCheckedChangeListener(){buttonView, isChecked ->
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             if(isChecked)Toast.makeText(this,"顯示全部任務",Toast.LENGTH_SHORT).show()
             else Toast.makeText(this,"隱藏未開始任務",Toast.LENGTH_SHORT).show()
         }
+
         fun initializeTaskListView(taskList: ArrayList<Task>){
             val myNameAdapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice)//For storing names(visible)
             val myObjectAdapter = ArrayAdapter<Task>(this,android.R.layout.simple_list_item_1)//For storing ids(gone)
@@ -63,7 +65,9 @@ class MainActivity : AppCompatActivity() {
             taskListView.adapter = myNameAdapter
             idListView.adapter = myObjectAdapter
         }
+
         initializeTaskListView(getTodayTaskList())
+
         fun initializeFinishListView(taskList :ArrayList<Task>){
             val myNameAdapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice)//For storing names(visible)
             val myObjectAdapter = ArrayAdapter<Task>(this,android.R.layout.simple_list_item_1)//For storing ids(gone)
@@ -91,16 +95,21 @@ class MainActivity : AppCompatActivity() {
             finishIdListView.adapter = myObjectAdapter
 
         }
+
         initializeFinishListView(getTodayTaskList())
+
     }
+
     fun showAll(): Boolean{
         return checkBoxGlob.isChecked
     }
+
     fun getTime():String{//For debugging
         val sdf = SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
         val time = sdf.format(Date())
         return time.toString()
     }
+
     fun getDate(): ArrayList<Int> {
         val yearDf = SimpleDateFormat("yyyy")
         val monthDf = SimpleDateFormat("MM")
@@ -111,14 +120,10 @@ class MainActivity : AppCompatActivity() {
         val day = dayDf.format(Date())
         return arrayListOf<Int>(year.toInt(),month.toInt(),day.toInt())
     }
+
     fun getTaskList(): ArrayList<Task>{
-        var taskList = taskOper.returnTaskList()
-        for(x in taskList){
-            taskOper.markTaskOverTime(x,getDate())
-        }
-        taskList = taskOper.returnTaskList()
+        var taskList = markTaskOverTime(taskOper.returnTaskList())
         var todayTaskList = arrayListOf<Task>()
-        var today = getDate()
         for(task in taskList){
             if(!task.isOverTime){
                 todayTaskList+=task
@@ -132,12 +137,31 @@ class MainActivity : AppCompatActivity() {
         todayTaskList = taskOper.sortTaskList(todayTaskList)
         return todayTaskList
     }
-    fun getTodayTaskList(): ArrayList<Task> {
-        var taskList = taskOper.returnTaskList()
-        for(x in taskList){
-            taskOper.markTaskOverTime(x,getDate())
+
+    fun markTaskOverTime(x: ArrayList<Task>): ArrayList<Task>{
+        var today = getDate()
+        val d1:String = today[0].toString() + "/" + today[1].toString() + "/" + today[2].toString()
+        for(i in 0 until x.size){
+            val d2:String = x[i].endTime.year.toString() + "/" + x[i].endTime.month.toString() + "/" + x[i].endTime.day
+            val sdf = SimpleDateFormat("yyyy/MM/dd")
+            val firstDate: Date = sdf.parse(d1)
+            val secondDate: Date = sdf.parse(d2)
+            val cmp = firstDate.compareTo(secondDate)
+            if(cmp>0){
+                x[i].isOverTime = true
+                val overTime = "(超時!!)"
+                if (overTime !in x[i].name)
+                    x[i].name = "${x[i].name}(超時!!)"
+            }
         }
-        taskList = taskOper.returnTaskList()
+        val json = taskOper.taskListToJson(x)
+        val file = FileManipulate()
+        file.writeFile(json,"$filePath/dataBase.json")
+        return x
+    }
+
+    fun getTodayTaskList(): ArrayList<Task> {
+        var taskList = markTaskOverTime(taskOper.returnTaskList())
         var todayTaskList = arrayListOf<Task>()
         var today = getDate()
         for(task in taskList){//today>startTime && today<endTime
@@ -147,18 +171,11 @@ class MainActivity : AppCompatActivity() {
             val firstDate: Date = sdf.parse(d1)
             val secondDate: Date = sdf.parse(d2)
             val cmp = firstDate.compareTo(secondDate)
-            when{
-                cmp>=0->{
-                    if(!task.isOverTime)
-                        todayTaskList+=task
-                    else
-                        continue
-                }
-                cmp<0->{
-                    continue
-                }
+            if(cmp>=0 && !task.isOverTime){
+                todayTaskList+=task
             }
         }
+
         for(task in taskList){
             if(task.isOverTime){
                 todayTaskList+=task
@@ -167,11 +184,12 @@ class MainActivity : AppCompatActivity() {
         todayTaskList = taskOper.sortTaskList(todayTaskList)
         return todayTaskList
     }
+
     fun updateListView(){
         var myNameAdapter = ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice)//For storing names(visible)
         var myObjectAdapter = ArrayAdapter<Task>(this,android.R.layout.simple_list_item_1)//For storing ids(gone)
-        var taskList = if(showAll())getTaskList()else getTodayTaskList()//to-do list taskList
-        var taskList2 = getTaskList() //Finish zone taskList
+        var taskList = if(showAll())    getTaskList()   else    getTodayTaskList()
+        var taskList2 = getTaskList()
         val finishTaskList = arrayListOf<Task>()
         var finishTaskCount :Int=0
         for(x in taskList){
@@ -207,6 +225,7 @@ class MainActivity : AppCompatActivity() {
         val count = finishListViewGlob.count
 
     }
+
     fun NewTaskBtn_click(view: android.view.View) {
         //**new task**
         val intent = Intent(this@MainActivity, insertPage::class.java)
@@ -214,32 +233,28 @@ class MainActivity : AppCompatActivity() {
         updateListView()
     }
 
-
     fun MarkBtn_click(view: android.view.View) {//Make change to taskList and finishList,
-        val taskListCount = taskListViewGlob.count
+        // 因為直接從 checkedItemPosition 裡面找所以就不用 Count 了
         val taskListArr = taskListViewGlob.checkedItemPositions
         var selectedName: String = ""
         var selectedID = arrayListOf<Task>()
-        for (i in 0 until taskListCount) {
-            if (taskListArr.get(i)) {
-                selectedName += taskListViewGlob.getItemAtPosition(i).toString() + " "
-                selectedID += idListViewGlob.getItemAtPosition(i) as Task
-            }
+        // taskListArr 只會存有的位置，所以不續要從頭找，直接讀就好
+        //keyAt 因為是 key O(1)
+        for(i in 0 until taskListArr.size()){
+            selectedName += taskListViewGlob.getItemAtPosition(taskListArr.keyAt(i)).toString() + " "
+            selectedID += idListViewGlob.getItemAtPosition(taskListArr.keyAt(i)) as Task
         }
-        for (x in selectedID) {
+        for (x in selectedID)
             taskOper.markTaskFinished(x)
-        }
+
         if(selectedName!="")
             Toast.makeText(this, "標記為已完成:\n$selectedName", Toast.LENGTH_SHORT).show()
-        val finishListCount = finishListViewGlob.count
         val finishListArr = finishListViewGlob.checkedItemPositions
         var unSelectedName: String = ""
         var unSelectedID = arrayListOf<Task>()
-        for (i in 0 until finishListCount) {
-            if (finishListArr.get(i)) {
-                unSelectedName += finishListViewGlob.getItemAtPosition(i).toString() + " "
-                unSelectedID += finishIdListViewGlob.getItemAtPosition(i) as Task
-            }
+        for (i in 0 until finishListArr.size()) {
+            unSelectedName += finishListViewGlob.getItemAtPosition(finishListArr.keyAt(i)).toString() + " "
+            unSelectedID += finishIdListViewGlob.getItemAtPosition(finishListArr.keyAt(i)) as Task
         }
         for (x in unSelectedID) {
             taskOper.markTaskUnFinished(x)
