@@ -3,13 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Chen/AndroidStudioProjects/GDSC-KotlinProject/app/src/main/res/layout/activity_insert_page.xml" value="0.10817524841915085" />
-        <entry key="..\:/Users/Chen/AndroidStudioProjects/GDSC-KotlinProject/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Users/Chen/AndroidStudioProjects/GDSC-KotlinProject/app/src/main/res/layout/image.xml" value="0.10817524841915085" />
-        <entry key="..\:/Users/Chen/AndroidStudioProjects/GDSC-KotlinProject/app/src/main/res/layout/listitem.xml" value="0.2" />
-        <entry key="..\:/Users/Chen/AndroidStudioProjects/GDSC-KotlinProject/app/src/main/res/layout/style_listview.xml" value="0.14583333333333334" />
         <entry key="..\:/Users/Gefla/Desktop/GDSC-KotlinProject/app/src/main/res/layout/activity_insert_page.xml" value="0.20625" />
         <entry key="..\:/Users/Gefla/Desktop/GDSC-KotlinProject/app/src/main/res/layout/activity_main.xml" value="0.23867753623188406" />
+        <entry key="..\:/Users/jimmy/Desktop/GDSC-KotlinProject/app/src/main/res/layout/activity_insert_page.xml" value="0.1453125" />
+        <entry key="..\:/Users/jimmy/Desktop/GDSC-KotlinProject/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/pomelo/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.20989583333333334" />
+        <entry key="..\:/Users/pomelo/Desktop/GDSC-KotlinProject/app/src/main/res/layout/activity_main.xml" value="0.2708333333333333" />
+        <entry key="..\:/Users/pomelo/Desktop/GDSC-KotlinProject/app/src/main/res/layout/listitem.xml" value="0.33" />
+        <entry key="..\:/Users/pomelo/Desktop/GDSC-KotlinProject/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1955" />
       </map>
     </option>
   </component>
