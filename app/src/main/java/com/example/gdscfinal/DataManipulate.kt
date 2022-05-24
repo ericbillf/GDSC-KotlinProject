@@ -17,14 +17,14 @@ class FileManipulate {
         f.writeText(text, Charset.defaultCharset())
     }
     fun getFileContent(filename: String): String {
-        val f = File(filename) //Internal storage path: data/data/com.example.gdscfinal/files
+        val f = File(filename)
         if (!f.exists()) {
             f.createNewFile()
         }
         return f.readText(Charset.forName("UTF-8"))
     }
 }
-data class Time(var year:Int,var month:Int, var day:Int)//https://ithelp.ithome.com.tw/articles/10206960
+data class Time(var year:Int,var month:Int, var day:Int)
 data class Task(
     var name:String,
     var startTime:Time,
@@ -45,7 +45,6 @@ class TaskOper {
     }
 
     fun returnTaskList(): ArrayList<Task> { // Return the task list in dataBase.json as an ArrayList<Task>
-//        好像沒必要寫那麼複雜
         var content = FileManipulate().getFileContent(jsonFilePath)
         return if(content.isEmpty()){
             ArrayList()
