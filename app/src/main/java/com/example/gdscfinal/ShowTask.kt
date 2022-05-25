@@ -122,19 +122,8 @@ class MainActivity : AppCompatActivity() {
 
     fun getTaskList(): ArrayList<Task>{
         var taskList = markTaskOverTime(taskOper.returnTaskList())
-        var todayTaskList = arrayListOf<Task>()
-        for(task in taskList){
-            if(!task.isOverTime){
-                todayTaskList+=task
-            }
-        }
-        for(task in taskList){
-            if(task.isOverTime){
-                todayTaskList+=task
-            }
-        }
-        todayTaskList = taskOper.sortTaskList(todayTaskList)
-        return todayTaskList
+        taskList = taskOper.sortTaskList(taskList)
+        return taskList
     }
 
     fun markTaskOverTime(x: ArrayList<Task>): ArrayList<Task>{
@@ -233,12 +222,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun MarkBtn_click(view: android.view.View) {//Make change to taskList and finishList,
-        // 因為直接從 checkedItemPosition 裡面找所以就不用 Count 了
         val taskListArr = taskListViewGlob.checkedItemPositions
         var selectedName: String = ""
         var selectedID = arrayListOf<Task>()
-        // taskListArr 只會存有的位置，所以不續要從頭找，直接讀就好
-        //keyAt 因為是 key O(1)
         for(i in 0 until taskListArr.size()){
             selectedName += taskListViewGlob.getItemAtPosition(taskListArr.keyAt(i)).toString() + " "
             selectedID += idListViewGlob.getItemAtPosition(taskListArr.keyAt(i)) as Task
