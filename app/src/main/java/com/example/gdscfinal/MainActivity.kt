@@ -2,6 +2,8 @@ package com.example.gdscfinal
 
 import android.content.ClipData
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.squareup.picasso.Picasso
+//import com.squareup.picasso.Picasso
 import org.jsoup.Jsoup
 import android.widget.ArrayAdapter
 
@@ -49,6 +51,12 @@ class MainActivity : AppCompatActivity() {
                 step += 1
             }
             list.setOnItemClickListener { parent:AdapterView<*>, view:View, position:Int, id:Long->
+                if (position!=null){
+                    val intent =Intent()
+                    intent.action=Intent.ACTION_VIEW
+                    intent.data= Uri.parse(newsList[position].url)
+                    startActivity(intent)
+                }
                 when(position){
                     0 -> Toast.makeText(this, "you click 0", Toast.LENGTH_SHORT).show()
                     1 -> Toast.makeText(this, "you click 1", Toast.LENGTH_SHORT).show()
