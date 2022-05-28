@@ -17,8 +17,6 @@ import android.widget.ArrayAdapter
 
 
 
-
-
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +31,6 @@ class MainActivity : AppCompatActivity() {
 //            Log.i("showJsoup", doc.toString())
 
             val span = doc.select("div.story-list__image > a")
-//            Log.i("showImg", img.toString())
             Log.i("----------", "---------")
             var step = 0
             for (x in span) {
@@ -43,13 +40,10 @@ class MainActivity : AppCompatActivity() {
                 if(title  == "" || imageUrl == "" || url == "")
                     continue
                 newsList.add(News(x.attr("aria-label"),"https://udn.com/"+x.attr("href"), x.select("picture > *").attr("data-srcset")))
-                Log.i("showImg", imageUrl)
-                Log.i("showTitle", title)
-                Log.i("showUrl", url)
-//                Log.i("showSpan", newsList[step].title)
-//                Log.i("showUrl", newsList[step].url)
+
                 step += 1
             }
+
             list.setOnItemClickListener { parent:AdapterView<*>, view:View, position:Int, id:Long->
                 if (position!=null){
                     val intent =Intent()
@@ -62,6 +56,13 @@ class MainActivity : AppCompatActivity() {
                     1 -> Toast.makeText(this, "you click 1", Toast.LENGTH_SHORT).show()
                     2 -> Toast.makeText(this, "you click 2", Toast.LENGTH_SHORT).show()
                 }
+
+            list.setOnItemClickListener { _:AdapterView<*>, _:View, position:Int, _:Long->
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data = Uri.parse(newsList[position].url)
+                startActivity(intent)
+
+
             }
 //            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"))
 //            startActivity(browserIntent)
@@ -78,9 +79,8 @@ class MainActivity : AppCompatActivity() {
                 intent.data = Uri.parse(url)
                 startActivity(intent)
             }*/
-        }).start()
+        }}).start()
     }
 }
 
 
-//https://udn.com/
