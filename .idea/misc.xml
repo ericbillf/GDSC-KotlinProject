@@ -5,8 +5,17 @@
       <map>
         <entry key="..\:/Program Files/Android/GDSC-KotlinProject/app/src/main/res/layout/activity_insert_page.xml" value="0.1234375" />
         <entry key="..\:/Program Files/Android/GDSC-KotlinProject/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
+<<<<<<< HEAD
         <entry key="..\:/Users/Gefla/Desktop/GDSC-KotlinProject/app/src/main/res/layout/activity_insert_page.xml" value="0.20625" />
         <entry key="..\:/Users/Gefla/Desktop/GDSC-KotlinProject/app/src/main/res/layout/activity_main.xml" value="0.2" />
+=======
+        <entry key="..\:/Users/Chen/AndroidStudioProjects/GDSC-KotlinProject/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1685" />
+        <entry key="..\:/Users/Chen/AndroidStudioProjects/GDSC-KotlinProject/app/src/main/res/layout/activity_main.xml" value="0.10817524841915085" />
+        <entry key="..\:/Users/Chen/AndroidStudioProjects/GDSC-KotlinProject/app/src/main/res/layout/news_view.xml" value="0.10817524841915085" />
+        <entry key="..\:/Users/Gefla/Desktop/GDSC-KotlinProject/app/src/main/res/layout/activity_insert_page.xml" value="0.20625" />
+        <entry key="..\:/Users/Gefla/Desktop/GDSC-KotlinProject/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Gefla/Desktop/GDSC-KotlinProject/app/src/main/res/layout/news_view.xml" value="0.20520833333333333" />
+>>>>>>> bryCyt07
       </map>
     </option>
   </component>
