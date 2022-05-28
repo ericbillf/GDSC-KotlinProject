@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                 Log.i("showParameterName", parameterName)
             }
         }.start()
-<<<<<<< HEAD
+//<<<<<<< HEAD
         return parameterName
 //=======
         Thread(Runnable{
@@ -115,8 +115,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }).start()
 //>>>>>>> bryCyt07
-=======
->>>>>>> a16dd5f176ae6b2d2ebc0955aa5a5ef6af2e43fd
+//=======>>>>>>> a16dd5f176ae6b2d2ebc0955aa5a5ef6af2e43fd
     }
 }
 
