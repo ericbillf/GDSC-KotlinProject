@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         toWeatherPictureId[parameterName]?.let { todayWeatherImageView.setImageResource(it) }
 
     }
-    private fun catchWeatherData() {
+    private fun catchWeatherData(): String {
         val catchData: String ="https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-B9C18838-0D7F-4F0B-9E6E-BBF8A927E5DE&locationName=%E9%AB%98%E9%9B%84%E5%B8%82";
         object : Thread() {
             override fun run() {
