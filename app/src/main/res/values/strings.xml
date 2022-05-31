@@ -15,4 +15,6 @@
     <string name="newtask">newtask</string>
     <string name="unmark">unmark</string>
     <string name="show_all">Show all</string>
+    <string name="hello">Hello!</string>
+    <string name="text">天氣</string>
 </resources>
