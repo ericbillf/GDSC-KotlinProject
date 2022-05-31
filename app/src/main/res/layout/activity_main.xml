@@ -10,18 +10,32 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="高雄市" />
+
+    <TextView
         android:id="@+id/weatherValText"
         android:layout_width="128dp"
         android:layout_height="51dp"
         android:layout_marginTop="50dp"
         android:autoSizeTextType="uniform"
         android:text="今日天氣"
+        android:textSize="32dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/weatherView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.155"
         app:layout_constraintStart_toStartOf="@+id/weatherView"
         app:layout_constraintTop_toTopOf="@+id/weatherView"
         app:layout_constraintVertical_bias="0.769" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 
     <ImageView
         android:id="@+id/show_weather_picture_imageView"
