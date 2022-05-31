@@ -7,15 +7,15 @@
     android:layout_height="match_parent"
 
     android:background="@drawable/background"
-    tools:context=".ShowTask">
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/weatherValText"
-        android:layout_width="61dp"
+        android:layout_width="128dp"
         android:layout_height="51dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="50dp"
         android:autoSizeTextType="uniform"
-        android:text="@string/text"
+        android:text="今日天氣"
         app:layout_constraintBottom_toBottomOf="@id/weatherView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.155"
@@ -27,18 +27,19 @@
         android:id="@+id/show_weather_picture_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toBottomOf="@+id/weatherView"
         app:layout_constraintEnd_toEndOf="@+id/pictureFrame"
         app:layout_constraintHorizontal_bias="0.745"
         app:layout_constraintStart_toStartOf="@+id/pictureFrame"
-        app:srcCompat="@drawable/a1" /><![CDATA[
+        app:srcCompat="@drawable/a1" />
 
-    =======
-    tools:context=".MainActivity"
-    android:orientation="vertical">
-
-    ]]>
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="ToTask_click"
+        android:text="任務" />
 
     <ListView
         android:id="@+id/listview"

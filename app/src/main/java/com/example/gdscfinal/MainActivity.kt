@@ -84,6 +84,11 @@ class MainActivity : AppCompatActivity() {
 
         return parameterName
     }
+
+    fun ToTask_click(view: android.view.View) {
+        val intent = Intent(this@MainActivity, ShowTask::class.java)
+        startActivity(intent)
+    }
 }
 
 

@@ -11,11 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Gdscfinal">
         <activity
+            android:name=".ShowTask"
+            android:exported="true" />
+        <activity
             android:name=".insertPage"
             android:exported="true" />
         <activity
-            android:name=".ShowTask"
+            android:name=".MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
