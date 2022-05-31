@@ -7,18 +7,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import java.io.File
-import java.io.IOException
-import java.nio.charset.Charset
-import java.util.logging.Level.INFO
-import com.example.gdscfinal.FileManipulate
-import com.example.gdscfinal.Task
-import com.example.gdscfinal.TaskOper
-import kotlin.collections.ArrayList
 
 class insertPage : AppCompatActivity() {
 
@@ -188,7 +179,7 @@ class insertPage : AppCompatActivity() {
                 }
                 if(nameIsValid)
                 {
-                    val intent = Intent(this@insertPage, MainActivity::class.java)
+                    val intent = Intent(this@insertPage, ShowTask::class.java)
                     startActivity(intent)
                 }
             }

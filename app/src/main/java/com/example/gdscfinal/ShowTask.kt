@@ -17,7 +17,7 @@ import kotlin.collections.ArrayList
 
 
 
-class MainActivity : AppCompatActivity() {
+class ShowTask : AppCompatActivity() {
     lateinit var taskListViewGlob: ListView
     lateinit var idListViewGlob: ListView
     lateinit var finishListViewGlob: ListView
@@ -216,7 +216,7 @@ class MainActivity : AppCompatActivity() {
 
     fun NewTaskBtn_click(view: android.view.View) {
         //**new task**
-        val intent = Intent(this@MainActivity, insertPage::class.java)
+        val intent = Intent(this@ShowTask, insertPage::class.java)
         startActivity(intent)
         updateListView()
     }
