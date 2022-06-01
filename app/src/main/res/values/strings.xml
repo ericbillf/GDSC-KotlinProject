@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">gdscfinal</string>
+
+    <string name="pickdatego">挑選開始日期</string>
+    <string name="pickdateend">挑選結束日期</string>
+    <string name="checkdate">確認日期</string>
+    <string name="task">新增任務</string>
+    <string name="hintinput">輸入你的任務</string>
+    <string name="submit">送出</string>
+    <string name="button">Button</string>
+    <string name="show">Show</string>
+    <string name="delete">delete</string>
+    <string name="markfinished">MarkFinished</string>
+    <string name="mark">mark</string>
+    <string name="newtask">newtask</string>
+    <string name="unmark">unmark</string>
+    <string name="show_all">Show all</string>
+    <string name="hello">Hello!</string>
+    <string name="text">天氣</string>
 </resources>
