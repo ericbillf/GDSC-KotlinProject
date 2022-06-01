@@ -54,9 +54,9 @@ class MainActivity : AppCompatActivity() {
                 list.adapter = NewsAdapter(this, R.layout.news_view, newsList)
             }
         }).start()
-
-        while (parameterName == "") {
-        }//?_?
+        while(parameterName == ""){
+            Thread.sleep(100)
+        }
         toWeatherPictureId[parameterName]?.let { todayWeatherImageView.setImageResource(it) }
         todayWeatherTextView.text = parameterName
     }
