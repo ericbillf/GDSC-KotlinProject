@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/jimmy/Desktop/GDSC-KotlinProject/app/src/main/res/layout/activity_main.xml" value="0.5502890173410404" />
+        <entry key="..\:/Users/jimmy/Desktop/GDSC-KotlinProject/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/pomelo/Desktop/GDSC-KotlinProject/app/src/main/res/layout/activity_insert_page.xml" value="0.20989583333333334" />
+        <entry key="..\:/Users/pomelo/Desktop/GDSC-KotlinProject/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/pomelo/Desktop/GDSC-KotlinProject/app/src/main/res/layout/activity_showtask.xml" value="0.2265625" />
       </map>
     </option>
   </component>
