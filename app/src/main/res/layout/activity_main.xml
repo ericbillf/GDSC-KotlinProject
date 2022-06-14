@@ -22,9 +22,9 @@
             android:id="@+id/imageView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="100dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="15dp"
+            android:layout_marginEnd="100dp"
             android:layout_marginBottom="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -102,6 +102,8 @@
             android:id="@+id/button5"
             android:layout_width="231dp"
             android:layout_height="105dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
             android:onClick="ToTask_click"
             android:text="任務"
             android:textSize="34dp"
@@ -110,21 +112,52 @@
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/listview"
-            app:layout_constraintVertical_bias="0.495" />
+            app:layout_constraintVertical_bias="0.157" />
 
         <ListView
             android:id="@+id/listview"
             android:layout_width="368dp"
             android:layout_height="226dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="70dp"
             android:linksClickable="true"
             android:scrollbars="none"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/imageView9"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/imageView9"
             app:layout_constraintTop_toBottomOf="@+id/imageView9"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_bias="0.206"
             tools:listitem="@layout/news_view" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="149dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="今日焦點"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/listview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView9"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
