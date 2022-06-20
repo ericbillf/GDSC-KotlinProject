@@ -181,6 +181,7 @@ class insertPage : AppCompatActivity() {
                 {
                     val intent = Intent(this@insertPage, MainActivity::class.java)
                     startActivity(intent)
+                    finish()
                     Toast.makeText(this,"任務創建完成!",Toast.LENGTH_SHORT).show()
                 }
             }
@@ -188,17 +189,8 @@ class insertPage : AppCompatActivity() {
         }
 
 
-
-
-
-
-
-
-
-
-
-
     }
+
 }
 
 

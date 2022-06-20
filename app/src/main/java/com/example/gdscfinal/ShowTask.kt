@@ -99,6 +99,11 @@ class ShowTask : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        val intent = Intent(this@ShowTask, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
     fun showAll(): Boolean{
         return checkBoxGlob.isChecked
     }
@@ -219,6 +224,7 @@ class ShowTask : AppCompatActivity() {
         val intent = Intent(this@ShowTask, insertPage::class.java)
         startActivity(intent)
         updateListView()
+        finish()
     }
 
     fun MarkBtn_click(view: android.view.View) {//Make change to taskList and finishList,
@@ -226,7 +232,7 @@ class ShowTask : AppCompatActivity() {
         var selectedName: String = ""
         var selectedID = arrayListOf<Task>()
         for(i in 0 until taskListArr.size()){
-            selectedName += taskListViewGlob.getItemAtPosition(taskListArr.keyAt(i)).toString() + " "
+            selectedName += if(i!= taskListArr.size()-1){taskListViewGlob.getItemAtPosition(taskListArr.keyAt(i)).toString() + "\n"}else{taskListViewGlob.getItemAtPosition(taskListArr.keyAt(i)).toString()}
             selectedID += idListViewGlob.getItemAtPosition(taskListArr.keyAt(i)) as Task
         }
         for (x in selectedID)
@@ -238,7 +244,7 @@ class ShowTask : AppCompatActivity() {
         var unSelectedName: String = ""
         var unSelectedID = arrayListOf<Task>()
         for (i in 0 until finishListArr.size()) {
-            unSelectedName += finishListViewGlob.getItemAtPosition(finishListArr.keyAt(i)).toString() + " "
+            unSelectedName += if(i!= finishListArr.size()-1){finishListViewGlob.getItemAtPosition(finishListArr.keyAt(i)).toString() + "\n"}else{finishListViewGlob.getItemAtPosition(finishListArr.keyAt(i)).toString()}
             unSelectedID += finishIdListViewGlob.getItemAtPosition(finishListArr.keyAt(i)) as Task
         }
         for (x in unSelectedID) {
@@ -252,13 +258,13 @@ class ShowTask : AppCompatActivity() {
     }
 
     fun DeleteBtn_click(view: android.view.View) {
-        val taskListCount = taskListViewGlob.count
+
         val taskListArr = taskListViewGlob.checkedItemPositions
         var selectedName: String = ""
         var selectedID = arrayListOf<Task>()
-        for (i in 0 until taskListCount) {
+        for (i in 0 until taskListArr.size()) {
             if (taskListArr.get(i)) {
-                selectedName += taskListViewGlob.getItemAtPosition(i).toString() + " "
+                selectedName += if(i!=taskListArr.size()-1){taskListViewGlob.getItemAtPosition(i).toString() + "\n"}else{taskListViewGlob.getItemAtPosition(i).toString()}
                 selectedID += idListViewGlob.getItemAtPosition(i) as Task
             }
         }
@@ -268,13 +274,12 @@ class ShowTask : AppCompatActivity() {
         if(selectedName!="")
             Toast.makeText(this,"已刪除:\n$selectedName",Toast.LENGTH_SHORT).show()
 
-        val finishListCount = finishListViewGlob.count
         val finishListArr = finishListViewGlob.checkedItemPositions
         var unSelectedName: String = ""
         var unSelectedID = arrayListOf<Task>()
-        for (i in 0 until finishListCount) {
+        for (i in 0 until finishListArr.size()) {
             if (finishListArr.get(i)) {
-                unSelectedName += finishListViewGlob.getItemAtPosition(i).toString() + " "
+                unSelectedName += if(i!=finishListArr.size()-1){finishListViewGlob.getItemAtPosition(i).toString() + "\n"}else{finishListViewGlob.getItemAtPosition(i).toString()}
                 unSelectedID += finishIdListViewGlob.getItemAtPosition(i) as Task
             }
         }

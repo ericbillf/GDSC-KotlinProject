@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONObject
 import org.jsoup.Jsoup
@@ -61,6 +62,16 @@ class MainActivity : AppCompatActivity() {
         todayWeatherTextView.text = parameterName
     }
 
+    override fun onBackPressed() {
+        AlertDialog.Builder(this).apply {
+            setTitle("Exit")
+            setMessage("選擇\"是\"離開。")
+            setPositiveButton("是"){_,_->super.onBackPressed()}//If yes, call the original method
+            setNegativeButton("否"){_, _->}
+            setCancelable(true)
+        }.create().show()
+
+    }
     private fun catchWeatherData(): String {
         val catchData: String ="https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=CWB-B9C18838-0D7F-4F0B-9E6E-BBF8A927E5DE&locationName=%E9%AB%98%E9%9B%84%E5%B8%82";
         object : Thread() {
@@ -82,6 +93,7 @@ class MainActivity : AppCompatActivity() {
     fun ToTask_click(view: android.view.View) {
         val intent = Intent(this@MainActivity, ShowTask::class.java)
         startActivity(intent)
+        finish()
     }
 }
 

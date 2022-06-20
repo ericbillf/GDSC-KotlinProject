@@ -85,7 +85,7 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="244dp"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="20dp"
         android:gravity="center"
@@ -146,21 +146,18 @@
 
     <CheckBox
         android:id="@+id/checkBox"
-        android:layout_width="119dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="19dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="220dp"
         android:text="顯示所有"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         android:textColor="#7E0C0B0B"
         android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/finishTaskListView"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.266"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/taskListView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView"
         app:layout_constraintVertical_bias="0.0" />
 
     <View
