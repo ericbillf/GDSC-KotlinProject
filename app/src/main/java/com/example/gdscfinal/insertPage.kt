@@ -191,6 +191,11 @@ class insertPage : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        val intent = Intent(this@insertPage, ShowTask::class.java)
+        startActivity(intent)
+        finish()
+    }
 }
 
 
